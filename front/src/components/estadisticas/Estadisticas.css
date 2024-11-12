@@ -1,0 +1,176 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #D1BFA5;
+    margin: 0;
+    padding: 0;
+    color: #000000;
+}
+
+.task-management {
+    width: 85%;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #F2BC41;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    letter-spacing: 1px;
+}
+
+h2 {
+    color: #E4901C;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    border-bottom: 2px solid #A3753A;
+    padding-bottom: 10px;
+}
+
+/* Formulario de asignación de tareas */
+
+.task-form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    gap: 20px;
+}
+
+.assign-task,
+.statistics {
+    width: 48%;
+    background-color: #F2BC41;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.assign-task input,
+.statistics input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #A3753A;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    color: #000000;
+    font-size: 1em;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.3s ease;
+}
+
+.assign-task input:focus,
+.statistics input:focus {
+    border-color: #E4901C;
+    /* Cambia el color al enfocar */
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background-color: #F2BC41;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+button:hover {
+    background-color: #E4901C;
+    transform: translateY(-3px);
+}
+
+.statistics p {
+    color: #000000;
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+/* Estilo para los gráficos */
+
+.statistics-chart {
+    margin-top: 30px;
+    text-align: center; /* Centra el gráfico */
+}
+
+/* Lista de tareas */
+
+.task-list {
+    margin-top: 30px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 25px;
+    gap: 10px;
+}
+
+.tabs li {
+    padding: 12px 20px;
+    background-color: #F2BC41;
+    color: #FFFFFF;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.tabs li:hover {
+    background-color: #E4901C;
+    transform: translateY(-3px);
+}
+
+.task-item {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    border-left: 8px solid #A3753A;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.task-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.task-item p {
+    margin: 8px 0;
+    font-size: 1.1em;
+    color: #000000;
+}
+
+.task-item button {
+    background-color: #F2BC41;
+    color: #FFFFFF;
+}
+
+.task-item button:hover {
+    background-color: #E4901C;
+}
+
+.task-item p.completed {
+    background-color: #D1BFA5;
+    padding: 10px;
+    border-radius: 8px;
+    color: #4CAF50;
+    font-weight: bold;
+    text-align: center;
+}

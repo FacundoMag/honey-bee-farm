@@ -1,0 +1,148 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff5e6 50%, #ffe0b3 50%);
+}
+
+header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #8B4513;
+    box-sizing: border-box;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.logo span {
+  font-size: 24px;
+  font-weight: bold;
+  color: #FFA500;
+}
+
+nav {
+  margin-left: auto;
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #FFA500;
+}
+
+main {
+  display: flex;
+  flex: 1;
+  justify-content: center; /* Centrar contenido principal */
+  align-items: center;
+  padding: 50px;
+  box-sizing: border-box;
+}
+
+.IniciarSesion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #FF8C00;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px; /* Ancho máximo de la forma */
+  padding: 20px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.login-form h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #8B4513;
+}
+
+.login-form input {
+  width: 85%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #D2691E;
+  border-radius: 5px;
+}
+
+.login-button {
+  width: 85%;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #FFA500;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #FF8C00;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  nav ul {
+    flex-direction: column;
+  }
+
+  nav ul li {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+
+  main {
+    padding: 20px;
+  }
+
+  .login-form {
+    width: 100%;
+    padding: 15px;
+  }
+}

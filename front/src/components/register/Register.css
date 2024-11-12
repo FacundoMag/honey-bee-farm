@@ -1,0 +1,74 @@
+/* Contenedor general del formulario */
+.form-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #FF8C00; /* Color naranja */
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Estilo del encabezado del formulario */
+.form-title {
+  font-size: 24px;
+  color: #A35B0C; /* Color marrón */
+  margin-bottom: 20px;
+}
+
+/* Contenedor de cada campo del formulario */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Etiquetas de los campos */
+.form-label {
+  display: block;
+  color: #A35B0C;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Estilo para cada campo de entrada */
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #FF8C00; /* Color naranja */
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Estilo del botón de enviar */
+.form-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #FF8C00; /* Color naranja */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.form-button:hover {
+  background-color: #D37800; /* Un tono más oscuro de naranja */
+}
+
+/* Estilo del texto al final del formulario */
+.form-footer {
+  margin: 15px 0 0;
+  color: #A35B0C; /* Color marrón */
+  font-size: 14px;
+}
+
+/* Estilo del enlace de inicio de sesión */
+.form-link {
+  color: #FF8C00; /* Color naranja */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.form-link:hover {
+  text-decoration: underline;
+}
