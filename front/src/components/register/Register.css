@@ -1,74 +1,131 @@
-/* Contenedor general del formulario */
-.form-container {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 20px;
-  border: 1px solid #FF8C00; /* Color naranja */
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  font-family: Arial, sans-serif;
+/* Register.css */
+.register-page {
+  font-family: 'Poppins', sans-serif;
+  background-color: #D1BFA5; /* Color 5 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  width: 100vw;
+  overflow: hidden;
 }
 
-/* Estilo del encabezado del formulario */
-.form-title {
+.register-container {
+  background-color: #F2BC41; /* Color 1 */
+  border-radius: 15px;
+  padding: 30px;
+  width: 400px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-page h2 {
   font-size: 24px;
-  color: #A35B0C; /* Color marrón */
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #A3753A; /* Color 4 */
+}
+
+.register-page p {
+  font-size: 14px;
+  color: #555;
   margin-bottom: 20px;
 }
 
-/* Contenedor de cada campo del formulario */
-.form-group {
-  margin-bottom: 15px;
-}
-
-/* Etiquetas de los campos */
-.form-label {
-  display: block;
-  color: #A35B0C;
+.register-page a {
+  color: #E4901C; /* Color 2 */
   font-weight: bold;
-  margin-bottom: 5px;
+  text-decoration: none;
 }
 
-/* Estilo para cada campo de entrada */
-.form-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #FF8C00; /* Color naranja */
-  border-radius: 4px;
-  box-sizing: border-box;
+.register-page a:hover {
+  text-decoration: underline;
 }
 
-/* Estilo del botón de enviar */
-.form-button {
+.register-page form {
   width: 100%;
-  padding: 10px;
-  background-color: #FF8C00; /* Color naranja */
-  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.register-page .input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+}
+
+.register-page label {
+  font-size: 14px;
+  color: #A3753A; /* Color 4 */
+  text-align: left;
+}
+
+.register-page .input-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #A3753A; /* Color 4 */
+}
+
+.register-page .input-field {
+  width: 100%;
+  padding: 10px 40px;
   border: none;
-  border-radius: 4px;
-  font-size: 16px;
+  font-size: 14px;
+  background-color: transparent;
+}
+
+.register-page .input-field:focus {
+  outline: none;
+  border-color: #E4901C; /* Color 2 */
+}
+
+.register-page .icon {
+  position: absolute;
+  left: 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+.register-page .toggle-icon {
+  position: absolute;
+  right: 10px;
+  font-size: 18px;
+  color: #333;
   cursor: pointer;
 }
 
-.form-button:hover {
-  background-color: #D37800; /* Un tono más oscuro de naranja */
+.register-page button {
+  background-color: #E4901C; /* Color 2 */
+  color: white;
+  width: 100%;
+  padding: 12px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo del texto al final del formulario */
-.form-footer {
-  margin: 15px 0 0;
-  color: #A35B0C; /* Color marrón */
-  font-size: 14px;
+.register-page button:hover {
+  background-color: #A3753A; /* Color 4 */
 }
 
-/* Estilo del enlace de inicio de sesión */
-.form-link {
-  color: #FF8C00; /* Color naranja */
-  text-decoration: none;
-  font-weight: bold;
+.back-icon {
+  position: absolute; 
+  top: 20px; 
+  left: 20px; 
+  font-size: 24px; 
+  color: #E4901C; /* Color 2 */
+  transition: color 0.3s ease; 
 }
 
-.form-link:hover {
-  text-decoration: underline;
+.back-icon:hover {
+  color: #A3753A; /* Color 4 */
 }

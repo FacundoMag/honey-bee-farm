@@ -1,59 +1,128 @@
-import React, { Component } from 'react';
-import './Estadisticas.css';
-import axios from '../AxiosConfig';
-import { Doughnut } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Component } from "react";
+import axios from "axios";
+import Header from "../comun/header/Header";
+import "./EstadisticasMiel.css";
 
-ChartJS.register(ArcElement, Tooltip, Legend);
-
-class EstadisticasMiel extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { data: null };
-  }
-
-  componentDidMount() {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      console.error('No token found, please login');
-      return;
+export default class EstadisticasMiel extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            areaSeleccionada: "",
+            estadisticas: [],
+            areas: []
+        };
     }
 
-    axios.get('/estadisticas/miel', {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    .then(response => {
-      if (Array.isArray(response.data)) {
-        const kilosExtraidos = response.data.reduce((acc, item) => acc + item.Kilos, 0);
-        const kilosAprox = response.data.reduce((acc, item) => acc + item.KgAprox, 0);
-        this.setState({
-          data: {
-            labels: ['Kg Extraídos', 'Kg Aproximados por extraer'],
-            datasets: [{
-              data: [kilosExtraidos, kilosAprox],
-              backgroundColor: ['#F2BC41', '#E4901C'],
-              hoverBackgroundColor: ['#A3753A', '#D0AB7D'],
-            }],
-          },
-        });
-      } else {
-        console.error('Error: los datos recibidos no son un array.');
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching estadisticas miel:', error);
-    });
-  }
+    // Trae el token del sessionStorage y verifica su existencia
+    componentDidMount() {
+        const token = sessionStorage.getItem("token");
+        if (token) {
+            this.extraerAreas(token);
+        } else {
+            window.location.href = "/iniciar-sesion";
+        }
+    }
 
-  render() {
-    const { data } = this.state;
-    return (
-      <div>
-        <h2>Estadísticas de Miel Extraída</h2>
-        {data ? <Doughnut data={data} /> : <p>Cargando...</p>}
-      </div>
-    );
-  }
+    // Esta función va a extraer las áreas disponibles
+    extraerAreas(token) {
+        const url = "http://localhost:4001/api/areas";
+
+        const config = {
+            headers: {
+                authorization: token,
+            },
+        };
+
+        axios.get(url, config)
+            .then((response) => {
+                this.setState({ areas: response.data });
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
+    // Esta función va a extraer las estadísticas de miel por área
+    extraerEstadisticas(token, areaId) {
+        const url = `http://localhost:4001/api/miel/${areaId}`;
+
+        const config = {
+            headers: {
+                authorization: token,
+            },
+        };
+
+        axios.get(url, config)
+            .then((response) => {
+                this.setState({ estadisticas: response.data });
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
+    // Maneja el cambio de área seleccionada
+    manejarCambio = (event) => {
+        const areaId = event.target.value;
+        this.setState({ areaSeleccionada: areaId });
+
+        const token = sessionStorage.getItem("token");
+        if (token) {
+            this.extraerEstadisticas(token, areaId);
+        }
+    };
+
+    render() {
+        return (
+            <> 
+                <Header
+                    isAuthenticated={true}  // Pasará el estado de autenticación
+                    onLogout={this.props.onLogout}
+                />
+
+                <div style={{ margin: "20px 0", textAlign: "center" }}>
+                    <label htmlFor="areaSeleccionada" style={{ marginRight: "10px" }}>
+                        Selecciona un área:
+                    </label>
+                    <select
+                        id="areaSeleccionada"
+                        value={this.state.areaSeleccionada}
+                        onChange={this.manejarCambio}
+                        style={{ padding: "5px", fontSize: "16px" }}
+                    >
+                        <option value="">Seleccionar área</option>
+                        {this.state.areas.map((area) => (
+                            <option key={area.IDArea} value={area.IDArea}>{area.NombreArea}</option>
+                        ))}
+                    </select>
+                </div>
+
+                {this.state.estadisticas.length > 0 ? (
+                    <div className="Estadisticas">
+                        <h1 className="Titulo">Estadísticas de Miel Recolectada</h1>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Mes</th>
+                                    <th>Kilos de Miel</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.estadisticas.map((stat, index) => (
+                                    <tr key={index}>
+                                        <td>{stat.mes}</td>
+                                        <td>{stat.kilos_miel}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                ) : (
+                    <div className="EstadisticasNoDisponibles">
+                        <h2>Seleccione un área para ver las estadísticas de miel recolectada.</h2>
+                    </div>
+                )}
+            </>
+        );
+    }
 }
-
-export default EstadisticasMiel;

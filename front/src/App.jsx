@@ -1,85 +1,68 @@
 import React, { Component } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import Login from './components/login/Login';
-import Register from './components/register/Register';
-import Dashboard from './components/estadisticas/Dashboard';
-import Trabajos from './components/trabajos/Trabajos';
+import { Router, Route, Switch, Redirect } from 'wouter';
 import Header from './components/comun/header/Header';
 import Footer from './components/comun/footer/Footer';
+import InicioSesion from './components/login/Login';
+import VisualizacionDeTareas from './components/visualizacionDeTareas/visualizacionDeTareas';
+import EstadisticasMiel from './components/estadisticas/EstadisticasMiel';
+import Register from './components/register/Register';
+import './App.css';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isAuthenticated: !!localStorage.getItem('token'), // Estado de autenticación basado en la presencia del token
-    };
-  }
-
-  // Método para actualizar el estado de autenticación
-  handleAuthentication = (isAuthenticated) => {
-    this.setState({ isAuthenticated });
-  };
-
-  componentDidUpdate(prevProps, prevState) {
-    // Verificar si el estado de autenticación ha cambiado
-    if (prevState.isAuthenticated !== this.state.isAuthenticated) {
-      // Actualizar isAuthenticated basado en la existencia del token
-      const token = localStorage.getItem('token');
-      this.setState({ isAuthenticated: !!token });
+export default class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isAuthenticated: false
+        };
     }
-  }
 
-  render() {
-    const { isAuthenticated } = this.state;
-    return (
-      <div className="App">
-        <Header />
-        <main>
-          <Routes>
-            <Route
-              path="/login"
-              element={<Login onAuthenticate={this.handleAuthentication} />}
-            />
-            <Route
-              path="/register"
-              element={<Register />}
-            />
-            <Route
-              path="/dashboard"
-              element={
-                isAuthenticated ? (
-                  <Dashboard />
-                ) : (
-                  <Navigate to="/login" />
-                )
-              }
-            />
-            <Route
-              path="/trabajos"
-              element={
-                isAuthenticated ? (
-                  <Trabajos />
-                ) : (
-                  <Navigate to="/login" />
-                )
-              }
-            />
-            <Route
-              path="/"
-              element={
-                isAuthenticated ? (
-                  <Navigate to="/dashboard" />
-                ) : (
-                  <Navigate to="/login" />
-                )
-              }
-            />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
+    componentDidMount() {
+        const token = sessionStorage.getItem("token");
+        if (token) {
+            this.setState({ isAuthenticated: true });
+        }
+    }
+
+    handleLogin = (token) => {
+        sessionStorage.setItem("token", token);
+        this.setState({ isAuthenticated: true });
+    };
+
+    handleLogout = () => {
+        sessionStorage.removeItem("token");
+        this.setState({ isAuthenticated: false });
+    };
+
+    render() {
+        const { isAuthenticated } = this.state;
+
+        return (
+            <Router>
+                <Header isAuthenticated={isAuthenticated} onLogout={this.handleLogout} />
+                <main>
+                    <Switch>
+                        <Route path="/iniciar-sesion">
+                            {isAuthenticated ? <Redirect to="/tareas" /> : <InicioSesion onLogin={this.handleLogin} />}
+                        </Route>
+                        <Route path="/registrarse">
+                            {isAuthenticated ? <Redirect to="/tareas" /> : <Register />}
+                        </Route>
+                        <Route path="/tareas">
+                            {isAuthenticated ? <VisualizacionDeTareas /> : <Redirect to="/iniciar-sesion" />}
+                        </Route>
+                        <Route path="/ver-tarea/:id_tarea">
+                            {isAuthenticated ? <VisualizacionDeTareas /> : <Redirect to="/iniciar-sesion" />} {/* Usar el mismo componente */}
+                        </Route>
+                        <Route path="/estadisticas-miel">
+                            {isAuthenticated ? <EstadisticasMiel /> : <Redirect to="/iniciar-sesion" />}
+                        </Route>
+                        <Route>
+                            <Redirect to="/iniciar-sesion" />
+                        </Route>
+                    </Switch>
+                </main>
+                <Footer />
+            </Router>
+        );
+    }
 }
-
-export default App;

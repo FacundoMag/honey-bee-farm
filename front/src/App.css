@@ -1,47 +1,75 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-
-:root {
-  --color-primary: #F2BC41;
-  --color-secondary: #E4901C;
-  --color-tertiary: #D0AB7D;
-  --color-accent: #A3753A;
-  --color-background: #D1BFA5;
-  --color-text: #333333;
-  --color-text-light: #FFFFFF;
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-body {
-  font-family: 'Roboto', sans-serif;
-  background-color: var(--color-background);
-  color: var(--color-text);
-  line-height: 1.6;
+header {
+  display: flex;
+  flex-direction: row;
+  background-color: #E4901C; /* Naranja */
+  height: 100px;
+  width: 100%;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: var(--color-accent);
-  color: var(--color-text-light);
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color var(--transition-speed) ease;
+footer {
+  display: grid;
+  place-items: center;
+  background-color: #A3753A; /* Marrón claro */
+  color: white;
+  font-size: x-large;
+  height: 100px;
+  width: 100%;
 }
 
-.btn:hover {
-  background-color: var(--color-secondary);
+h1 {
+  color: #D1BFA5; /* Beige claro */
 }
 
-.card {
-  background-color: var(--color-text-light);
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin-bottom: 20px;
+p {
+  color: #D1BFA5; /* Beige claro */
+}
+
+.Secciones {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100px;
+  font-size: xx-large;
+  color: #D1BFA5; /* Beige claro */
+}
+
+a {
+  text-decoration: none;
+}
+
+.BotonIs {
+  flex: 1;
+  background-color: #F2BC41; /* Amarillo dorado claro */
+  text-align: center;
+  padding: 5px;
+  color: #E4901C; /* Naranja */
+  font-size: x-large;
+  font-family: "Lexend", sans-serif;
+  text-decoration: none;
+  border-radius: 5%;
+  margin-left: 5px;
+}
+
+.BotonCc {
+  flex: 1;
+  background-color: transparent;
+  text-align: center;
+  padding: 5px;
+  color: #D1BFA5; /* Beige claro */
+  font-family: "Lexend", sans-serif;
+  font-size: x-large;
+  border: 1px solid #D1BFA5; /* Beige claro */
+  border-radius: 5%;
+  text-decoration: underline #E4901C; /* Naranja */
+  margin-right: 5px;
 }

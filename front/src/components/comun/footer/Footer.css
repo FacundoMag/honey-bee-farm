@@ -1,6 +1,7 @@
+/* Footer.css */
 .footer {
-  background-color: #8B4513;
-  color: #FFA500;
+  background-color: #A3753A; /* Marrón claro */
+  color: #F2BC41; /* Amarillo dorado claro */
   padding: 20px 0;
   box-sizing: border-box;
   width: 100%;
@@ -29,6 +30,7 @@
 .footer-logo span {
   font-size: 18px;
   font-weight: bold;
+  color: #F2BC41; /* Amarillo dorado claro */
 }
 
 .footer-nav ul {
@@ -39,7 +41,7 @@
 }
 
 .footer-nav ul li a {
-  color: #FFA500;
+  color: #F2BC41; /* Amarillo dorado claro */
   text-decoration: none;
   font-size: 16px;
   transition: color 0.3s ease;

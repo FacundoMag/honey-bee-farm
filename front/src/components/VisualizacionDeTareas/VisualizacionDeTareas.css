@@ -1,0 +1,51 @@
+/* VisualizacionDeTareas.css */
+.Contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+    background-color: #D1BFA5; /* Beige claro */
+}
+
+.VisualizacionTareas {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.TareasNoDisponibles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Titulo {
+    color: #E4901C; /* Naranja */
+    font-family: "Plus Jakarta Sans", sans-serif;
+    text-decoration: underline;
+}
+
+h2 {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    text-align: center;
+    color: #A3753A; /* Marrón claro */
+}
+
+.Publicar {
+    background-color: #E4901C; /* Naranja */
+    padding: 5px;
+    color: white;
+    font-size: x-large;
+    font-family: "Lexend", sans-serif;
+    text-decoration: underline blue;
+    border-radius: 5%;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.Publicar:hover {
+    background-color: #D0AB7D; /* Beige oscuro */
+}

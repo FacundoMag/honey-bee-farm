@@ -1,39 +1,82 @@
-import React, { Component } from 'react';
-import "./Header.css";
+import { Component } from "react";
+import Boton from "../Boton";
+import usuario from "../../../assets/usuario.png";
+import { Link } from 'wouter';
+import './Header.css';
 
-export default class HeaderLogin extends Component {
+export default class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoggedIn: false, 
+            isMenuOpen: false
         };
     }
 
-    componentDidMount() {
-        const token = localStorage.getItem('token');
-        if (token) {
-            this.setState({ isLoggedIn: true });
+    toggleMenu = () => {
+        this.setState(prevState => ({
+            isMenuOpen: !prevState.isMenuOpen
+        }));
+    };
+
+    handleLogout = () => {
+        console.log("Logout clicked in Header"); // Verifica el click
+        sessionStorage.removeItem("token");
+        localStorage.removeItem("token");
+        
+        if (this.props.onLogout) {
+            this.props.onLogout(); // Llama al método que recibe el logout
         }
-    }
+    };
 
     render() {
-        const { isLoggedIn } = this.state;
-
-        return (
+        return(
             <header>
-                <div className="logo">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/imagen_2024-10-28_125843649-YlENPv3QqPjfwtwQH7QfAbbKhasl4J.png" alt="GREIDANUS HONEYBEE FARM" className="logo-image" />
-                    <span>GREIDANUS HONEYBEE</span>
-                </div>
-                {isLoggedIn && (
-                    <nav>
-                        <ul>
-                            <li><a href="/dashboard">Home</a></li>
-                            <li><a href="/estadisticas/dashboard">Estadísticas</a></li>
-                            <li><a href="/trabajos">Trabajos</a></li>
-                            <li><a href="/apiarios">Apiarios</a></li>
-                        </ul>
-                    </nav>
+                {this.props.isAuthenticated ? (  // Verifica si está autenticado
+                    <>
+                        <div className="Secciones" style={{ justifyContent: "left", paddingLeft: "50px" }}>
+                            <div className="logo">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/imagen_2024-10-28_125843649-YlENPv3QqPjfwtwQH7QfAbbKhasl4J.png" alt="GREIDANUS HONEYBEE FARM" className="logo-image" />
+                                <span>GREIDANUS HONEYBEE</span>
+                            </div>
+                        </div>
+
+                        <div className="Secciones" style={{ justifyContent: "center" }}>
+                            <Link to="/tareas" className="HeaderLink">Tareas</Link>
+                            <Link to="/areas" className="HeaderLink">Áreas</Link>
+                            <Link to="/registros" className="HeaderLink">Registros</Link>
+                        </div>
+
+                        <div className="Secciones" style={{ justifyContent: "right", marginRight: "60px" }}>
+                            <div className="Usuario" onClick={this.toggleMenu}>
+                                <img 
+                                    src={usuario} 
+                                    alt="ERROR" 
+                                    style={{ height: "25px", width: "35px" }}
+                                />
+                            </div>
+
+                            {this.state.isMenuOpen && (
+                                <div className="MenuDesplegable">
+                                    <Link to={`/editar-usuario/${this.props.usuario_id}`} className="MenuLink">Editar usuario</Link>
+                                    <button className="CerrarSesion" onClick={this.handleLogout}>Cerrar sesión</button>
+                                </div>
+                            )}
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <div className="Secciones" style={{ justifyContent: "left", paddingLeft: "50px" }}>
+                            <div className="logo">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/imagen_2024-10-28_125843649-YlENPv3QqPjfwtwQH7QfAbbKhasl4J.png" alt="GREIDANUS HONEYBEE FARM" className="logo-image" />
+                                <span>GREIDANUS HONEYBEE</span>
+                            </div>
+                        </div>
+
+                        <div className="Secciones"></div>
+
+                        <div className="Secciones" style={{paddingRight: "20px"}}>
+                        </div>
+                    </>
                 )}
             </header>
         );

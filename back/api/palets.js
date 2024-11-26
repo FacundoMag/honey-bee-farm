@@ -3,9 +3,9 @@ const router = express.Router();
 const db = require('../db/conexion');
 const { verifyToken } = require('./users');
 
-// Obtener todos los apiarios
+// Obtener todos los palets
 router.get('/', verifyToken, (req, res) => {
-    const query = 'SELECT * FROM Apiarios';
+    const query = 'SELECT * FROM Palets';
     db.query(query, (err, results) => {
         if (err) {
             return res.status(500).send(err);
@@ -14,15 +14,15 @@ router.get('/', verifyToken, (req, res) => {
     });
 });
 
-// Crear un nuevo apiario
+// Crear un nuevo palet
 router.post('/', verifyToken, (req, res) => {
-    const { nombreApiario, IDArea } = req.body;
-    if (!nombreApiario || !IDArea) {
+    const { tipo, IDApiario } = req.body;
+    if (!tipo || !IDApiario) {
         return res.status(400).send('Todos los campos son obligatorios');
     }
 
-    const query = 'INSERT INTO Apiarios (NombreApiario, IDArea) VALUES (?, ?)';
-    db.query(query, [nombreApiario, IDArea], (err, results) => {
+    const query = 'INSERT INTO Palets (Tipo, IDApiario) VALUES (?, ?)';
+    db.query(query, [tipo, IDApiario], (err, results) => {
         if (err) {
             return res.status(500).send(err);
         }

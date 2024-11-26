@@ -1,0 +1,65 @@
+/* EstadisticasMiel.css */
+.Estadisticas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+    background-color: #D1BFA5; /* Beige claro */
+}
+
+.Titulo {
+    color: #E4901C; /* Naranja */
+    font-family: "Plus Jakarta Sans", sans-serif;
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+
+/* Estilos para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 16px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+table th, table td {
+    border: 1px solid #A3753A; /* Marrón claro */
+    padding: 12px;
+    text-align: center;
+}
+
+table th {
+    background-color: #F2BC41; /* Amarillo dorado claro */
+    font-weight: bold;
+    color: white;
+}
+
+table td {
+    background-color: #ffffff;
+    color: #2c3e50; /* Gris oscuro */
+}
+
+table tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Enlace dentro de la tabla */
+table th a {
+    color: #E4901C; /* Naranja */
+    text-decoration: none;
+}
+
+table th a:hover {
+    text-decoration: underline;
+}
+
+.EstadisticasNoDisponibles {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.EstadisticasNoDisponibles h2 {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    color: #A3753A; /* Marrón claro */
+}

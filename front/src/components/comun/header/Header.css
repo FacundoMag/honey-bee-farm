@@ -1,9 +1,99 @@
-header {
+/* Header.css */
+.Header {
   display: flex;
-  width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 20px 20px 0; 
-  background-color: #8B4513;
+  padding: 20px 40px; /* Incrementar el padding para que sea más grueso */
+  background-color: #E4901C; /* Naranja */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Sombra ligera para efecto */
+}
 
+.Usuario {
+background-color: #E4901C; /* Naranja */
+border-radius: 50%; 
+padding: 5px;
+cursor: pointer;
+position: relative;
+}
+
+.Usuario:hover {
+filter: brightness(50%);
+}
+
+.BotonPublicar {
+display: flex; 
+flex-direction: row; 
+margin-right: 20px;
+font-family: "Lexend", sans-serif;
+}
+
+.BotonPublicar:hover {
+text-decoration: underline white;
+}
+
+.MenuDesplegable {
+position: absolute;
+top: 80px; /* Ajuste para colocar la bandeja más abajo */
+right: 5px;
+background-color: #ffffff;
+box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+border-radius: 8px;
+padding: 5px 0;
+width: 180px;
+z-index: 10;
+}
+
+.MenuLink, .CerrarSesion {
+display: block;
+padding: 10px 20px;
+font-family: "Lexend", sans-serif;
+color: #333;
+text-decoration: none;
+text-align: left;
+font-size: 0.9rem; /* Tamaño de fuente más pequeño */
+cursor: pointer;
+}
+
+.MenuLink:hover {
+background-color: #f0f0f0;
+}
+
+.CerrarSesion {
+background-color: #A3753A; /* Marrón claro */
+color: white;
+border: none;
+padding: 10px 20px;
+width: 100%;
+text-align: left;
+font-size: 0.9rem;
+cursor: pointer;
+border-radius: 4px;
+margin-top: 10px;
+font-family: "Lexend", sans-serif;
+}
+
+.CerrarSesion:hover {
+background-color: #D0AB7D; /* Beige oscuro */
+}
+
+.HeaderLink {
+margin: 0 10px;
+color: #333;
+text-decoration: none;
+font-family: "Lexend", sans-serif;
+}
+
+.HeaderLink:hover {
+text-decoration: underline;
+color: #E4901C; /* Naranja */
+}
+
+.logo {
+display: flex;
+align-items: center;
+}
+
+.logo-image {
+height: 35px;
+margin-right: 10px;
 }

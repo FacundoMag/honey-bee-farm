@@ -3,13 +3,14 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const db = require('../db/conexion');
+require('dotenv').config();
 
-const secretKey = 'your_secret_key'; // Asegúrate de utilizar una clave secreta segura
+const secretKey = process.env.SECRET_KEY;
 
 // Ruta para el registro
 router.post('/register', (req, res) => {
-  const { username, email, password } = req.body;
-  if (!username || !email || !password) {
+  const { nombre, apellido, dni, password } = req.body;
+  if (!nombre || !apellido || !dni || !password) {
     return res.status(400).send('Todos los campos son obligatorios');
   }
 
@@ -18,8 +19,8 @@ router.post('/register', (req, res) => {
       return res.status(500).send(err);
     }
 
-    const query = 'INSERT INTO Usuarios (NombreUsuario, Email, Password) VALUES (?, ?, ?)';
-    db.query(query, [username, email, hash], (err, results) => {
+    const query = 'INSERT INTO Usuarios (Nombre, Apellido, DNI, Password) VALUES (?, ?, ?, ?)';
+    db.query(query, [nombre, apellido, dni, hash], (err, results) => {
       if (err) {
         return res.status(500).send(err);
       }
@@ -30,10 +31,10 @@ router.post('/register', (req, res) => {
 
 // Ruta para el login
 router.post('/login', (req, res) => {
-  const { email, password } = req.body;
-  const query = 'SELECT * FROM Usuarios WHERE Email = ?';
+  const { dni, password } = req.body;
+  const query = 'SELECT * FROM Usuarios WHERE DNI = ?';
 
-  db.query(query, [email], (err, results) => {
+  db.query(query, [dni], (err, results) => {
     if (err) {
       return res.status(500).send(err);
     }
