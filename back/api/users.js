@@ -7,27 +7,7 @@ require('dotenv').config();
 
 const secretKey = process.env.SECRET_KEY;
 
-// Ruta para el registro
-router.post('/register', (req, res) => {
-  const { nombre, apellido, dni, password } = req.body;
-  if (!nombre || !apellido || !dni || !password) {
-    return res.status(400).send('Todos los campos son obligatorios');
-  }
 
-  bcrypt.hash(password, 10, (err, hash) => {
-    if (err) {
-      return res.status(500).send(err);
-    }
-
-    const query = 'INSERT INTO Usuarios (Nombre, Apellido, DNI, Password) VALUES (?, ?, ?, ?)';
-    db.query(query, [nombre, apellido, dni, hash], (err, results) => {
-      if (err) {
-        return res.status(500).send(err);
-      }
-      res.status(201).send('Usuario registrado exitosamente');
-    });
-  });
-});
 
 // Ruta para el login
 router.post('/login', (req, res) => {
