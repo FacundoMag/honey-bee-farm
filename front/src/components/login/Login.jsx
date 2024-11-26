@@ -111,27 +111,8 @@ class Login extends Component {
               onChange={this.handleChange}  
             />  
 
-            <div className="options">  
-              <label className="checkbox-container">  
-                <input type="checkbox" id="rememberMe" />  
-                Recuerdame  
-              </label>  
-            </div>  
 
             <button type="submit" className="login-button">Login</button>  
-
-            <p className="or-text">or continue with</p>  
-            <div className="social-icons">  
-              <SocialIcon  
-                iconClass="bi bi-facebook"  
-                onClick={() => console.log('Facebook clicked')}  
-              />  
-
-              <SocialIcon  
-                iconClass="bi bi-google"  
-                onClick={() => console.log('Google clicked')}  
-              />  
-            </div>  
           </form>  
         </div>  
       </div>  
