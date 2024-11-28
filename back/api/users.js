@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const db = require('../db/conexion');
-require('dotenv').config();
+require('dotenv/lib/main').config();
 
 const secretKey = process.env.SECRET_KEY;
 
