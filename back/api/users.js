@@ -11,16 +11,16 @@ const secretKey = process.env.SECRET_KEY;
 
 // Ruta para el login
 router.post('/login', (req, res) => {
-  const { dni, password } = req.body;
-  const query = 'SELECT * FROM Usuarios WHERE DNI = ?';
+  const { nombreUsuario, password } = req.body;
+  const query = 'SELECT * FROM administrador WHERE password = ?';
 
-  db.query(query, [dni], (err, results) => {
+  db.query(query, [password], (err, results) => {
     if (err) {
       return res.status(500).send(err);
     }
 
     if (results.length === 0) {
-      return res.status(401).send('Usuario no encontrado');
+      return res.status(401).send('Administrador no encontrado');
     }
 
     const user = results[0];
