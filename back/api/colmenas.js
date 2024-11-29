@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db/conexion');
-const { verifyToken } = require('./users');
+
 
 // Obtener todas las colmenas
-router.get('/', verifyToken, (req, res) => {
+router.get('/', (req, res) => {
     const query = 'SELECT * FROM Colmenas';
     db.query(query, (err, results) => {
         if (err) {
@@ -15,7 +15,7 @@ router.get('/', verifyToken, (req, res) => {
 });
 
 // Crear una nueva colmena
-router.post('/', verifyToken, (req, res) => {
+router.post('/', (req, res) => {
     const { camaras, tipoTapa, IDPalet } = req.body;
     if (!camaras || !tipoTapa || !IDPalet) {
         return res.status(400).send('Todos los campos son obligatorios');
@@ -31,7 +31,7 @@ router.post('/', verifyToken, (req, res) => {
 });
 
 // Actualizar una colmena
-router.put('/:id', verifyToken, (req, res) => {
+router.put('/:id', (req, res) => {
     const { id } = req.params;
     const { camaras, tipoTapa, IDPalet } = req.body;
 
@@ -45,7 +45,7 @@ router.put('/:id', verifyToken, (req, res) => {
 });
 
 // Eliminar una colmena
-router.delete('/:id', verifyToken, (req, res) => {
+router.delete('/:id', (req, res) => {
     const { id } = req.params;
 
     const query = 'DELETE FROM Colmenas WHERE IDColmena = ?';

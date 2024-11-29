@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(cors(corsOptions));
 
 // Importar rutas y middleware de verificación
-const { router: usersRouter, verifyToken } = require('./api/users'); 
+const usersRouter = require('./api/users'); 
 const apiariosRouter = require('./api/apiarios');  
 const colmenasRouter = require('./api/colmenas');  
 const trabajosRouter = require('./api/tareas');  
@@ -23,12 +23,12 @@ const tareasRouter = require('./api/tareas');
 const estadisticasRouter = require('./api/estadisticas'); 
 
 app.use('/api', usersRouter);
-app.use('/api/apiarios', verifyToken, apiariosRouter);
-app.use('/api/colmenas', verifyToken, colmenasRouter);
-app.use('/api/trabajos', verifyToken, trabajosRouter);
-app.use('/api/areas', verifyToken, areasRouter);
-app.use('/api/tareas', verifyToken, tareasRouter);
-app.use('/api/estadisticas', verifyToken, estadisticasRouter);
+app.use('/api/apiarios', apiariosRouter);
+app.use('/api/colmenas',  colmenasRouter);
+app.use('/api/trabajos', trabajosRouter);
+app.use('/api/areas', areasRouter);
+app.use('/api/tareas',  tareasRouter);
+app.use('/api/estadisticas',  estadisticasRouter);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

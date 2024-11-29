@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db/conexion');
-const { verifyToken } = require('./users');
+
 
 // Obtener todos los apiarios
-router.get('/', verifyToken, (req, res) => {
+router.get('/', (req, res) => {
     const query = 'SELECT * FROM Apiarios';
     db.query(query, (err, results) => {
         if (err) {
@@ -15,7 +15,7 @@ router.get('/', verifyToken, (req, res) => {
 });
 
 // Crear un nuevo apiario
-router.post('/', verifyToken, (req, res) => {
+router.post('/', (req, res) => {
     const { nombreApiario, IDArea } = req.body;
     if (!nombreApiario || !IDArea) {
         return res.status(400).send('Todos los campos son obligatorios');
