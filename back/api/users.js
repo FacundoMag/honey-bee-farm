@@ -38,19 +38,21 @@ router.post('/login', (req, res) => {
 router.post('/registrar', function(req, res, next){
   const {pasaporte, nombreYapellido, telefono, correo, password} = req.body;
   if(!pasaporte || !nombreYapellido || !telefono || !correo || !password){
+    console.log(req.body);
     return res.status(401).json({error: "los campos son obligatorios"})
   }
 
-  const ObtenerEstado = "SELECT id FROM estados WHERE Estado = Activo";
+  const ObtenerEstado = "SELECT ID FROM estados WHERE Estado = 'Activo'";
   db.query(ObtenerEstado, function(error, results){
       if(error){
         return res.status(401).json({error: "error al obtener el estado"})
       }
-      const estado = results[0].id;
+      const estado = results[0].ID;
 
       const sql = "INSERT INTO empleados (pasaporte, NombreUsuario, telefono, correo, password, estado) VALUES (?, ?, ?, ?, ?, ?)";
       db.query(sql, [pasaporte, nombreYapellido, telefono, correo, password, estado], function(error, results){
         if(error){
+          console.error(error)
           return res.status(403).json({error: "error al crear el empleado"});
         }
         res.json({
@@ -60,9 +62,9 @@ router.post('/registrar', function(req, res, next){
   })
 })
 //ruta para traer los empleados: localhost:5000/api/empleados
-router.get('/empleados', function(res, req, next){
+router.get('/empleados', function(req, res, next){
   const sql = "SELECT * FROM empleados";
-  db.query(sql, function(error, results){
+    db.query(sql, function(error, results){
     if(error){
       console.log(error);
       return res.status(400).json({error: "ocurrio un error a la hora de traer a los empleados"})
@@ -70,6 +72,36 @@ router.get('/empleados', function(res, req, next){
     res.json({
       results
     })
+  })
+})
+
+router.put('/desabilitacion', function(req, res, next){
+  const {ID} = req.query;
+  const sql = "SELECT estado FROM empleados WHERE UID = ?";
+  db.query(sql, [ID], function(error, results){
+    if(error){
+      console.log(error);
+      return res.status(401).json({error: "error al obtener el estado actual del empleado"});
+    }
+    const estadoActual = results[0];
+    if(estadoActual == 1){
+      const sql2 = "UPDATE empleados SET estado = '2' WHERE ID = ?";
+      db.query(sql2, [ID], function(error, results){
+        if(error){
+          return res.status(401).json({error: "error al actualizar el estado del empleado a Desabilitado"});
+        }
+        res.json({message: "Estado aactualizado correctamente"})
+      })
+    }
+    if(estadoActual == 2){
+      const sql3 = "UPDATE empleados SET estado = '1' WHERE ID = ?";
+      db.query(sql3, [ID], function(error, results){
+        if(error){
+          return res.status(401).json({error: "error al actualizar el estado del empleado a Activo"});
+        }
+        res.json({message: "Estado actualizado correctamente"})
+      })
+    }
   })
 })
 
