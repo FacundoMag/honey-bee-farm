@@ -104,6 +104,20 @@ router.put('/desabilitacion', function(req, res, next){
     }
   })
 })
+router.put('/editar_empleado', function(req, res, next){
+  const {ID} = req.query;
+  const {pasaporte, nombreYapellido, telefono, correo, password} = req.body;
+  const sql = "UPDATE empleados SET pasaporte = ?, NombreUsuario = ?, telefono = ?, correo = ?, password = ? WHERE UID = ?";
+  db.query(sql, [pasaporte, nombreYapellido, telefono, correo, password, ID], function(error, results){
+    if(error){
+      console.log(error);
+      return res.status(401).json({error: "error al editar el empleado"});
+    }
+    res.json({
+      message: "empleado editado correctamente"
+    })
+  })
+})
 
 
 
