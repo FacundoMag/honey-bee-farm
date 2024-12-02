@@ -25,20 +25,3 @@
     font-family: "Plus Jakarta Sans", sans-serif;
     text-decoration: underline;
 }
-
-.Publicar {
-    background-color: #E4901C; /* Naranja */
-    padding: 5px;
-    color: white;
-    font-size: x-large;
-    font-family: "Lexend", sans-serif;
-    text-decoration: underline blue;
-    border-radius: 5%;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.Publicar:hover {
-    background-color: #D0AB7D; /* Beige oscuro */
-}
