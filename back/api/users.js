@@ -83,25 +83,17 @@ router.put('/desabilitacion', function(req, res, next){
       console.log(error);
       return res.status(401).json({error: "error al obtener el estado actual del empleado"});
     }
-    const estadoActual = results[0];
-    if(estadoActual == 1){
-      const sql2 = "UPDATE empleados SET estado = '2' WHERE ID = ?";
-      db.query(sql2, [ID], function(error, results){
+    const estadoActual = results[0].estado;
+    const nuevoEstado = estadoActual === 1 ? 2 : 1;
+  
+      const sql2 = "UPDATE empleados SET estado = ? WHERE UID = ?";
+      db.query(sql2, [nuevoEstado, ID], function(error, results){
         if(error){
+          console.error(error);
           return res.status(401).json({error: "error al actualizar el estado del empleado a Desabilitado"});
         }
         res.json({message: "Estado aactualizado correctamente"})
       })
-    }
-    if(estadoActual == 2){
-      const sql3 = "UPDATE empleados SET estado = '1' WHERE ID = ?";
-      db.query(sql3, [ID], function(error, results){
-        if(error){
-          return res.status(401).json({error: "error al actualizar el estado del empleado a Activo"});
-        }
-        res.json({message: "Estado actualizado correctamente"})
-      })
-    }
   })
 })
 router.put('/editar_empleado', function(req, res, next){
