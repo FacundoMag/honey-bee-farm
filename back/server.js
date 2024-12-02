@@ -29,6 +29,7 @@ app.use('/api/trabajos', trabajosRouter);
 app.use('/api/areas', areasRouter);
 app.use('/api/tareas',  tareasRouter);
 app.use('/api/estadisticas',  estadisticasRouter);
+app.use(express.json())
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

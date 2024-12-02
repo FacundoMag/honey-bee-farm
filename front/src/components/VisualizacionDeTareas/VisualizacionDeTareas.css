@@ -4,7 +4,6 @@
     flex-direction: column;
     align-items: center;
     padding: 25px;
-    background-color: #D1BFA5; /* Beige claro */
 }
 
 .VisualizacionTareas {
@@ -25,12 +24,6 @@
     color: #E4901C; /* Naranja */
     font-family: "Plus Jakarta Sans", sans-serif;
     text-decoration: underline;
-}
-
-h2 {
-    font-family: "Plus Jakarta Sans", sans-serif;
-    text-align: center;
-    color: #A3753A; /* Marrón claro */
 }
 
 .Publicar {
