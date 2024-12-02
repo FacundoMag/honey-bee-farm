@@ -39,28 +39,31 @@ export default class App extends Component {
         return (
             <Router>
                 <Header isAuthenticated={isAuthenticated} onLogout={this.handleLogout} />
+
                 <main>
                     <Switch>
                         <Route path="/iniciar-sesion">
-                            {isAuthenticated ? <Redirect to="/tareas" /> : <InicioSesion onLogin={this.handleLogin} />}
+                            {isAuthenticated ? <Redirect to = "/tareas" /> : <InicioSesion onLogin = {this.handleLogin} />}
                         </Route>
+
                         <Route path="/registrarse">
-                            {isAuthenticated ? <Redirect to="/tareas" /> : <Register />}
+                            {isAuthenticated ? <Redirect to = "/tareas" /> : <Register />}
                         </Route>
+
                         <Route path="/tareas">
-                            {isAuthenticated ? <VisualizacionDeTareas /> : <Redirect to="/iniciar-sesion" />}
+                            {isAuthenticated ? <VisualizacionDeTareas /> : <Redirect to = "/iniciar-sesion" />}
                         </Route>
-                        <Route path="/ver-tarea/:id_tarea">
-                            {isAuthenticated ? <VisualizacionDeTareas /> : <Redirect to="/iniciar-sesion" />} {/* Usar el mismo componente */}
-                        </Route>
+
                         <Route path="/estadisticas-miel">
-                            {isAuthenticated ? <EstadisticasMiel /> : <Redirect to="/iniciar-sesion" />}
+                            {isAuthenticated ? <EstadisticasMiel /> : <Redirect to = "/iniciar-sesion" />}
                         </Route>
+
                         <Route>
-                            <Redirect to="/iniciar-sesion" />
+                            <Redirect to = "/iniciar-sesion" />
                         </Route>
                     </Switch>
                 </main>
+
                 <Footer />
             </Router>
         );

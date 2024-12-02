@@ -23,10 +23,10 @@ export default class TareaCard extends Component {
 
         axios.put(url, data, config)
             .then((response) => {
-                Notificacion.show("Se ha finalizado la tarea.", "success");
                 // Aquí se ejecuta la función que pasa el padre (extraerTareas)
                 if (typeof this.props.extraerTareas === 'function') {
                     this.props.extraerTareas();
+                    Notificacion.show("Se ha finalizado la tarea.", "success");
                 } else {
                     console.error("extraerTareas no es una función");
                 }
