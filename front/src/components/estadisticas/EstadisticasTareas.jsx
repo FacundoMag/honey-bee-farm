@@ -6,7 +6,7 @@ import './EstadisticasMiel.css';
 
 Chart.register(ArcElement, Tooltip, Legend);
 
-class EstadisticasMiel extends Component {
+class EstadisticasTareas extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,15 +15,15 @@ class EstadisticasMiel extends Component {
   }
 
   componentDidMount() {
-    this.fetchEstadisticasMiel();
+    this.fetchEstadisticasTrabajos();
   }
 
-  fetchEstadisticasMiel = async () => {
+  fetchEstadisticasTrabajos = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/estadisticas/miel');
+      const response = await axios.get('http://localhost:5000/api/estadisticas/trabajos');
       this.setState({ estadisticas: response.data });
     } catch (error) {
-      console.error("Error al obtener las estadísticas de miel:", error);
+      console.error("Error al obtener las estadísticas de trabajos:", error);
     }
   };
 
@@ -33,9 +33,9 @@ class EstadisticasMiel extends Component {
     const data = {
       labels: estadisticas.map(stat => `Mes ${stat.mes}`),
       datasets: [{
-        data: estadisticas.map(stat => stat.kilos_extraidos),
-        backgroundColor: ["#F2BC41", "#E4901C", "#FF6384", "#36A2EB"],
-        hoverBackgroundColor: ["#A3753A", "#D0AB7D", "#FF6384", "#36A2EB"],
+        data: estadisticas.map(stat => stat.trabajos_exitosos + stat.trabajos_no_exitosos),
+        backgroundColor: ["#F2BC41", "#E4901C"],
+        hoverBackgroundColor: ["#A3753A", "#D0AB7D"],
       }]
     };
 
@@ -46,12 +46,21 @@ class EstadisticasMiel extends Component {
           display: true,
           position: 'top',
         },
+        tooltip: {
+          callbacks: {
+            label: (context) => {
+              const label = context.label || '';
+              const value = context.formattedValue;
+              return `${label}: ${value} trabajo${value > 1 ? 's' : ''}`;
+            }
+          }
+        }
       }
     };
 
     return (
-      <div className="EstadisticasMiel">
-        <h2>Estadísticas de Miel Recolectada</h2>
+      <div className="EstadisticasTareas">
+        <h2>Estadísticas de Tareas</h2>
         {estadisticas.length > 0 ? (
           <Doughnut data={data} options={options} />
         ) : (
@@ -62,4 +71,4 @@ class EstadisticasMiel extends Component {
   }
 }
 
-export default EstadisticasMiel;
+export default EstadisticasTareas;

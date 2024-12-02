@@ -9,7 +9,7 @@ class Login extends Component {
     super(props);  
     this.state = {  
       passwordVisible: false,  
-      dni: '',  
+      nombreUsuario: '',  
       password: '',  
       error: '',  
       isAuthenticated: false,  
@@ -25,14 +25,14 @@ class Login extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { dni, password } = this.state;
+    const { nombreUsuario, password } = this.state;
 
     try {
         const response = await axios.post(
-            'http://localhost:5000/user/login',
+            'http://localhost:5000/api/login',
             {
-                dni: dni,
-                contraseña: password,
+                nombreUsuario: nombreUsuario,
+                password: password,
             },
             {
                 headers: {
@@ -43,15 +43,15 @@ class Login extends Component {
 
         const data = response.data;
 
-        if (data.status === 'ok') {
-            localStorage.setItem('token', data.token);
+        if (data.message === 'acceso concedido') {
+            localStorage.setItem('token', data.token); // Asegúrate de que el servidor envía un token
 
-            this.props.onLogin(data.usuario_id, data.token);
+            this.props.onLogin(data.usuario_id, data.token); // Ajusta estos parámetros según los datos que envía el servidor
             
             this.setState({ isAuthenticated: true, error: null }); // Limpia errores previos si el inicio es exitoso
             Notificacion.show("Inicio de Sesión exitosa", "success");
         } else {
-          Notificacion.show("DNI o contraseña incorrecto, verifique los datos e inténtelo nuevamente", "error");
+          Notificacion.show("Nombre de usuario o contraseña incorrecto, verifique los datos e inténtelo nuevamente", "error");
         }
     } catch (error) {
         // Verifica si el error proviene de la respuesta del servidor o de la conexión
@@ -67,10 +67,10 @@ class Login extends Component {
   };  
 
   render() {  
-    const { dni, password, passwordVisible, error, isAuthenticated } = this.state;  
+    const { nombreUsuario, password, passwordVisible, error, isAuthenticated } = this.state;  
 
     if (isAuthenticated) {  
-      return <Redirect to="/" />;  // Redirige a la página de inicio si está autenticado  
+      return <Redirect to="/tareas" />;  // Redirige a la página de tareas si está autenticado  
     }  
 
     return (  
@@ -83,7 +83,7 @@ class Login extends Component {
           <h2 className="login-title">Iniciar Sesión</h2>  
           <p className="login-text">  
           Si no tienes una cuenta registrate{' '}  
-            <Link to="/Registrarse" className="register-link">Registrarme!</Link>  
+            <Link to="/registrarse" className="register-link">Registrarme!</Link>  
           </p>  
 
           {error && <p className="error-text">{error}</p>}  
@@ -91,11 +91,11 @@ class Login extends Component {
           <form className="login-form" onSubmit={this.handleSubmit}>  
             <InputField  
               type="text"  
-              id="dni"  
-              label="DNI"  
-              placeholder="Enter your DNI"  
+              id="nombreUsuario"  
+              label="Usuario"  
+              placeholder="Ingresa tu nombre de usuario"  
               iconClass="bi bi-person"  
-              value={dni}  
+              value={nombreUsuario}  
               onChange={this.handleChange}  
             />  
 
@@ -103,7 +103,7 @@ class Login extends Component {
               type={passwordVisible ? 'text' : 'password'}  
               id="password"  
               label="Contraseña"  
-              placeholder="Enter your Password"  
+              placeholder="Ingresa tu contraseña"  
               iconClass="bi bi-lock"  
               toggleIconClass={passwordVisible ? 'bi bi-eye-slash' : 'bi bi-eye'}  
               onToggle={this.togglePasswordVisibility}  
@@ -145,18 +145,6 @@ class InputField extends Component {
           )}  
         </div>  
       </div>  
-    );  
-  }  
-}  
-
-class SocialIcon extends Component {  
-  render() {  
-    const { iconClass, onClick } = this.props;  
-
-    return (  
-      <a href="/#" className="social-icon" onClick={onClick}>  
-        <i className={`${iconClass}`}></i>  
-      </a>  
     );  
   }  
 }  

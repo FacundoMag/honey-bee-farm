@@ -4,7 +4,7 @@ import Header from './components/comun/header/Header';
 import Footer from './components/comun/footer/Footer';
 import InicioSesion from './components/login/Login';
 import VisualizacionDeTareas from './components/visualizacionDeTareas/visualizacionDeTareas';
-import EstadisticasMiel from './components/estadisticas/EstadisticasMiel';
+import Dashboard from './components/estadisticas/Dashboard'; // Asegúrate de que la ruta del componente sea correcta
 import Register from './components/register/Register';
 import './App.css';
 
@@ -51,10 +51,10 @@ export default class App extends Component {
                             {isAuthenticated ? <VisualizacionDeTareas /> : <Redirect to="/iniciar-sesion" />}
                         </Route>
                         <Route path="/ver-tarea/:id_tarea">
-                            {isAuthenticated ? <VisualizacionDeTareas /> : <Redirect to="/iniciar-sesion" />} {/* Usar el mismo componente */}
+                            {isAuthenticated ? <VisualizacionDeTareas /> : <Redirect to="/iniciar-sesion" />}
                         </Route>
-                        <Route path="/estadisticas-miel">
-                            {isAuthenticated ? <EstadisticasMiel /> : <Redirect to="/iniciar-sesion" />}
+                        <Route path="/estadisticas">
+                            {isAuthenticated ? <Dashboard /> : <Redirect to="/iniciar-sesion" />}
                         </Route>
                         <Route>
                             <Redirect to="/iniciar-sesion" />

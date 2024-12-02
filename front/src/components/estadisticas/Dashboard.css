@@ -1,0 +1,43 @@
+/* Dashboard.css */
+
+/* Estilo general para el Dashboard */
+.Dashboard {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 1200px;
+    background-color: #fff; /* Fondo blanco para distinguir del fondo de la página */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.statistics {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.statistics h2 {
+    color: #E4901C;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    border-bottom: 2px solid #A3753A;
+    padding-bottom: 10px;
+}
+
+.statistics select {
+    display: block;
+    margin: 0 auto 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.statistics p {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+}
