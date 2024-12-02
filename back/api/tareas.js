@@ -4,7 +4,7 @@ const db = require('../db/conexion');
 
 // Obtener todas las tareas
 router.get('/', (req, res) => {
-  const query = 'SELECT * FROM Tareas';
+  const query = 'SELECT * FROM Tareas ORDER BY Realizada DESC';
   db.query(query, (err, results) => {
     if (err) {
       return res.status(500).send(err);
@@ -30,17 +30,18 @@ router.post('/', (req, res) => {
 });
 
 // Actualizar el estado de una tarea
-router.put('/:id', (req, res) => {
-  const { id } = req.params;
+router.put('/', (req, res) => {
+  const { id } = req.query;  // Accedes al parámetro de consulta con req.query
   const { IDEstado } = req.body;
 
-  const query = 'UPDATE Tareas SET IDEstado = ? WHERE IDTarea = ?';
+  const query = 'UPDATE Tareas SET Realizada = ? WHERE IDTarea = ?';
   db.query(query, [IDEstado, id], (err, results) => {
     if (err) {
       return res.status(500).send(err);
     }
-    res.json({ id });
+    res.json({ id, IDEstado });
   });
 });
+
 
 module.exports = router;
