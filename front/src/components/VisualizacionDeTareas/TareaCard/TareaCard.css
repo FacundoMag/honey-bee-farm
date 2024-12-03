@@ -1,6 +1,6 @@
 /* TareaCard.css */
 .TareaCard {
-    height: 200px;
+    height: 225px;
     width: 325px;
     background-color: white;
     border-radius: 2.5%;
@@ -10,15 +10,17 @@
     transition: background-color 0.3s;
 }
 
-.TareaCard h1 {
+.H1Tarea {
     font-family: "Plus Jakarta Sans", sans-serif;
     color: #E4901C; /* Naranja */
     text-decoration: underline;
+    font-size: xx-large;
 }
 
-.TareaCard h2 {
+.H2Tarea {
     font-family: "Plus Jakarta Sans", sans-serif;
     color: #A3753A; /* Marrón claro */
+    border: none;
 }
 
 .TareaCard p {

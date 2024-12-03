@@ -1,4 +1,5 @@
 import { Component } from "react";
+import FormTarea from "./formTarea/FormTarea";
 import TareaCard from "./TareaCard/TareaCard";
 import Boton from "../comun/Boton";
 import "./VisualizacionDeTareas.css";
@@ -31,7 +32,9 @@ export default class VisualizacionDeTareas extends Component {
     render() {
         return (
             <div className="Contenedor">
-                <h1 className="Titulo">{this.props.titulo}</h1>
+                <FormTarea
+                    extraerTareas = {this.extraerTareas}
+                />
 
                 {this.state.tareas.length > 0 ? (
                     <div className="VisualizacionTareas">

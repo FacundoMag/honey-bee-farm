@@ -15,13 +15,13 @@ router.get('/', (req, res) => {
 
 // Crear una nueva tarea
 router.post('/', (req, res) => {
-  const { nombreTarea, descripcion, IDEstado } = req.body;
-  if (!nombreTarea || !descripcion || !IDEstado) {
+  const { nombreTarea, mes, año } = req.body;
+  if (!nombreTarea || !mes || !año) {
     return res.status(400).send('Todos los campos son obligatorios');
   }
 
-  const query = 'INSERT INTO Tareas (nombreTarea, descripcion, IDEstado) VALUES (?, ?, ?)';
-  db.query(query, [nombreTarea, descripcion, IDEstado], (err, results) => {
+  const query = 'INSERT INTO Tareas (NombreTarea, Mes, Año, Realizada) VALUES (?, ?, ?, 2)';
+  db.query(query, [nombreTarea, mes, año], (err, results) => {
     if (err) {
       return res.status(500).send(err);
     }
