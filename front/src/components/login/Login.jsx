@@ -81,10 +81,7 @@ class Login extends Component {
           </Link>  
 
           <h2 className="login-title">Iniciar Sesión</h2>  
-          <p className="login-text">  
-          Si no tienes una cuenta registrate{' '}  
-            <Link to="/registrarse" className="register-link">Registrarme!</Link>  
-          </p>  
+
 
           {error && <p className="error-text">{error}</p>}  
 

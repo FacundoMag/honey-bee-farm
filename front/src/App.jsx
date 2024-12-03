@@ -4,6 +4,10 @@ import Header from './components/comun/header/Header';
 import Footer from './components/comun/footer/Footer';
 import InicioSesion from './components/login/Login';
 import VisualizacionDeTareas from './components/visualizacionDeTareas/visualizacionDeTareas';
+import AgregarEmpleado from './components/agregarempleado/AgregarEmpleado';
+import GestionEmpleados from './components/gestionempleados/GestionEmpleados';
+import EstadisticasMiel from './components/estadisticas/EstadisticasMiel';
+import EditarEmpleado from './components/editarempleado/EditarEmpleado';
 import Dashboard from './components/estadisticas/Dashboard'; // Asegúrate de que la ruta del componente sea correcta
 import Register from './components/register/Register';
 import './App.css';
@@ -60,6 +64,18 @@ export default class App extends Component {
 
                         <Route path="/estadisticas">
                             {isAuthenticated ? <Dashboard /> : <Redirect to="/iniciar-sesion" />}
+                        </Route>
+
+                        <Route path= "/editar-empleado">
+                            <EditarEmpleado/>
+                        </Route>
+                        
+                        <Route path="/agregar-empleado">
+                            <AgregarEmpleado/>
+                        </Route>
+
+                        <Route path= "/gestion-empleados">
+                           <GestionEmpleados/>
                         </Route>
 
                         <Route>
