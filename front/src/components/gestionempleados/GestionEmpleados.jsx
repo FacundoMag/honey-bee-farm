@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "wouter";
 import axios from "axios";
 import "./GestionEmpleados.css";
 
@@ -12,7 +13,6 @@ class GestionEmpleados extends Component {
 
     this.fetchUsers = this.fetchUsers.bind(this);
     this.toggleUserState = this.toggleUserState.bind(this);
-    this.editUser = this.editUser.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
   }
 
@@ -24,7 +24,6 @@ class GestionEmpleados extends Component {
     axios
       .get("http://localhost:5000/api/empleados")
       .then((response) => {
-        console.log("Respuesta del servidor:", response.data);
         this.setState({ users: response.data.results || [] });
       })
       .catch((error) => {
@@ -35,22 +34,14 @@ class GestionEmpleados extends Component {
 
   toggleUserState(userId) {
     axios
-      .put(`http://localhost:5000/api/deshabilitacion?ID=${userId}`)
-      .then((response) => {
-        console.log("Estado actualizado:", response.data);
-        this.fetchUsers(); // Volvemos a obtener la lista después de actualizar el estado
+      .put(`http://localhost:5000/api/deshabilitacion?UID=${userId}`)
+      .then(() => {
+        this.fetchUsers();
       })
       .catch((error) => {
         console.error("Error al actualizar el estado del usuario:", error);
         alert("No se pudo actualizar el estado del empleado.");
       });
-  }
-
-  editUser(userId) {
-    // Lógica para redirigir al formulario de edición del usuario
-    console.log("Editar usuario con ID:", userId);
-    // Aquí puedes redirigir, por ejemplo:
-    window.location.href = `/editar-empleado/${userId}`;
   }
 
   handleSearchChange(event) {
@@ -59,8 +50,6 @@ class GestionEmpleados extends Component {
 
   render() {
     const { users, searchTerm } = this.state;
-
-    // Filtraria usuarios por NombreUsuario o pasaporte
     const filteredUsers = users.filter((user) =>
       user.NombreUsuario.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.pasaporte.toLowerCase().includes(searchTerm.toLowerCase())
@@ -77,7 +66,6 @@ class GestionEmpleados extends Component {
             onChange={this.handleSearchChange}
             className="search-input"
           />
-          <button className="search-button">Buscar</button>
         </div>
         <table className="employees-table">
           <thead>
@@ -86,7 +74,6 @@ class GestionEmpleados extends Component {
               <th>Nombre Completo</th>
               <th>Teléfono</th>
               <th>Email</th>
-              <th>Contraseña</th>
               <th>Estado</th>
               <th>Acciones</th>
             </tr>
@@ -100,11 +87,6 @@ class GestionEmpleados extends Component {
                   <td>{user.telefono}</td>
                   <td>{user.correo}</td>
                   <td>
-                    {user.Password && user.Password.length > 0
-                      ? "*".repeat(user.Password.length)
-                      : "No disponible"}
-                  </td>
-                  <td>
                     <span
                       className={`state-badge ${
                         user.estado === 1 ? "state-active" : "state-inactive"
@@ -115,11 +97,12 @@ class GestionEmpleados extends Component {
                   </td>
                   <td>
                     {/* Icono de edición */}
-                    <i
-                      className="bi bi-pencil-square edit-icon"
-                      title="Editar"
-                      onClick={() => this.editUser(user.UID)}
-                    ></i>
+                    <Link href={`/editar-empleado/${user.UID}`}>
+                      <i
+                        className="bi bi-pencil-square edit-icon"
+                        title="Editar"
+                      ></i>
+                    </Link>
                     {/* Icono de habilitar/deshabilitar */}
                     <i
                       className={`bi ${
@@ -135,7 +118,7 @@ class GestionEmpleados extends Component {
               ))
             ) : (
               <tr>
-                <td colSpan="7">No hay empleados registrados</td>
+                <td colSpan="6">No hay empleados registrados</td>
               </tr>
             )}
           </tbody>
