@@ -1,5 +1,4 @@
 import { Component } from "react";
-import Boton from "../Boton";
 import usuario from "../../../assets/usuario.png";
 import { Link } from 'wouter';
 import './Header.css';
@@ -29,7 +28,7 @@ export default class Header extends Component {
     };
 
     render() {
-        return(
+        return (
             <header>
                 {this.props.isAuthenticated ? (  // Verifica si está autenticado
                     <>
@@ -44,6 +43,7 @@ export default class Header extends Component {
                             <Link to="/tareas" className="HeaderLink">Tareas</Link>
                             <Link to="/areas" className="HeaderLink">Áreas</Link>
                             <Link to="/registros" className="HeaderLink">Registros</Link>
+                            <Link to="/estadisticas" className="HeaderLink">Estadísticas</Link>
                         </div>
 
                         <div className="Secciones" style={{ justifyContent: "right", marginRight: "60px" }}>

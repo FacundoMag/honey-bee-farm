@@ -1,24 +1,35 @@
 /* TareaCard.css */
 .TareaCard {
-    height: 375px;
-    width: 375px;
+    height: 225px;
+    width: 325px;
     background-color: white;
     border-radius: 2.5%;
-    margin: 20px;
+    margin: 5px;
+    padding: 20px;
     border: 1px solid #E4901C; /* Naranja */
     transition: background-color 0.3s;
 }
 
-.TareaCard:hover {
-    background-color: #F2BC41; /* Amarillo dorado claro */
-}
-
-.TareaCard h3 {
+.H1Tarea {
     font-family: "Plus Jakarta Sans", sans-serif;
     color: #E4901C; /* Naranja */
+    text-decoration: underline;
+    font-size: xx-large;
+}
+
+.H2Tarea {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    color: #A3753A; /* Marrón claro */
+    border: none;
 }
 
 .TareaCard p {
     font-family: "Plus Jakarta Sans", sans-serif;
     color: #A3753A; /* Marrón claro */
+}
+
+.checkTarea {
+    cursor: pointer; 
+    height: 50px; 
+    width: 50px;
 }
