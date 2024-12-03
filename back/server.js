@@ -21,6 +21,7 @@ const trabajosRouter = require('./api/tareas');
 const areasRouter = require('./api/areas'); 
 const tareasRouter = require('./api/tareas'); 
 const estadisticasRouter = require('./api/estadisticas'); 
+const registro = require('./api/registro');
 
 app.use('/api', usersRouter);
 app.use('/api/apiarios', apiariosRouter);
@@ -29,6 +30,7 @@ app.use('/api/trabajos', trabajosRouter);
 app.use('/api/areas', areasRouter);
 app.use('/api/tareas',  tareasRouter);
 app.use('/api/estadisticas',  estadisticasRouter);
+app.use('/api/registro', registro);
 app.use(express.json())
 
 const PORT = process.env.PORT || 5000;
