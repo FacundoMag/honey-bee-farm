@@ -48,7 +48,7 @@ export default class TareaCard extends Component {
                                 <circle cx="12" cy="12" r="12" fill="#00C853" />
                                 <path d="M9 12.5l2 2L15 9.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
-                            <h2 style={{ margin: "7.5px 0 0 5px" }}>Tarea realizada</h2>
+                            <h2 style={{ margin: "5px 0 0 5px", border: "none" }}>Tarea realizada</h2>
                         </div>
                     ) : realizada === 2 ? (
                         <div style={{ display: "flex", flexDirection: "row" }}>
@@ -57,12 +57,13 @@ export default class TareaCard extends Component {
                                 <path d="M12 7v6" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
                                 <circle cx="12" cy="16" r="1" fill="#fff" />
                             </svg>
-                            <h2 style={{ margin: "7.5px 0 0 5px" }}>Tarea pendiente</h2>
+                            <h2 style={{ margin: "5px 0 0 5px", border: "none" }}>Tarea pendiente</h2>
                         </div>
                     ) : null}
 
-                    <h1>{nombreTarea}</h1>
-                    <h2>{mes}, {año}</h2>
+                    <h1 className="H1Tarea">{nombreTarea}</h1>
+
+                    <h2 className="H2Tarea">{mes}, {año}</h2>
                 </div>
 
                 {realizada === 2 && (

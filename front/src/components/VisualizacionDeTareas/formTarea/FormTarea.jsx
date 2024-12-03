@@ -8,7 +8,7 @@ export default class FormularioTarea extends Component {
     super(props);
     this.state = {
       nombreTarea: "",
-      caracteresRestantes: 150,
+      caracteresRestantes: 25,
       mes: "", // Para almacenar el mes seleccionado
       año: "", // Para almacenar el año seleccionado
     };
@@ -20,10 +20,10 @@ export default class FormularioTarea extends Component {
 
   manejarCambio(event) {
     const nombreTarea = event.target.value;
-    if (nombreTarea.length <= 150) {
+    if (nombreTarea.length <= 25) {
       this.setState({
         nombreTarea,
-        caracteresRestantes: 150 - nombreTarea.length,
+        caracteresRestantes: 25 - nombreTarea.length,
       });
     }
   }
@@ -76,7 +76,7 @@ export default class FormularioTarea extends Component {
               value={nombreTarea}
               onChange={this.manejarCambio}
               placeholder="Introduzca el nombre de la tarea..."
-              maxLength="150"
+              maxLength="25"
             />
 
             <select

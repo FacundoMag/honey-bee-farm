@@ -4,6 +4,7 @@ import Header from './components/comun/header/Header';
 import Footer from './components/comun/footer/Footer';
 import InicioSesion from './components/login/Login';
 import VisualizacionDeTareas from './components/visualizacionDeTareas/visualizacionDeTareas';
+import EstadisticasMiel from "./components/estadisticas/EstadisticasMiel"
 import AgregarEmpleado from './components/agregarempleado/AgregarEmpleado';
 import GestionEmpleados from './components/gestionempleados/GestionEmpleados';
 import EstadisticasMiel from './components/estadisticas/EstadisticasMiel';
