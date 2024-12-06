@@ -43,6 +43,7 @@ export default class Header extends Component {
                             <Link to="/areas" className="HeaderLink">Áreas</Link>
                             <Link to="/registros" className="HeaderLink">Registros</Link>
                             <Link to="/estadisticas" className="HeaderLink">Estadísticas</Link>
+                            <Link to="/apiarios" className="HeaderLink">Apiarios</Link>
                         </div>
 
                         <div className="Secciones" style={{ justifyContent: "right", marginRight: "60px" }}>
@@ -73,7 +74,7 @@ export default class Header extends Component {
 
                         <div className="Secciones"></div>
 
-                        <div className="Secciones" style={{paddingRight: "20px"}}></div>
+                        <div className="Secciones" style={{ paddingRight: "20px" }}></div>
                     </>
                 )}
             </header>

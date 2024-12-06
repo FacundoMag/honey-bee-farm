@@ -33,7 +33,7 @@ app.use('/api/estadisticas',  estadisticasRouter);
 app.use('/api/registro', registro);
 app.use(express.json())
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Servidor en ejecución en el puerto ${PORT}`);
 });

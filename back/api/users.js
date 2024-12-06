@@ -30,7 +30,7 @@ router.post('/login', (req, res) => {
     })
   });
 });
-//ruta para crear empleado: .. localhost:5000/api/registrar
+//ruta para crear empleado: .. localhost:8080/api/registrar
 router.post('/registrar', function (req, res, next) {
   const { pasaporte, nombreYapellido, telefono, correo, password } = req.body;
   if (!pasaporte || !nombreYapellido || !telefono || !correo || !password) {
@@ -57,7 +57,7 @@ router.post('/registrar', function (req, res, next) {
     })
   })
 })
-//ruta para traer los empleados: localhost:5000/api/empleados
+//ruta para traer los empleados: localhost:8080/api/empleados
 router.get('/empleados', function (req, res, next) {
   const sql = "SELECT * FROM empleados";
   db.query(sql, function (error, results) {

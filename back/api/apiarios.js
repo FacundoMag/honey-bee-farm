@@ -5,7 +5,12 @@ const db = require('../db/conexion');
 
 // Obtener todos los apiarios
 router.get('/', (req, res) => {
-    const query = 'SELECT * FROM Apiarios';
+    const query = `
+        SELECT apiarios.IDApiario, apiarios.NombreApiario, areas.NombreArea, 
+               apiarios.KilosExtraidos, apiarios.Mes, apiarios.Año
+        FROM apiarios
+        JOIN areas ON apiarios.IDArea = areas.IDArea
+    `;
     db.query(query, (err, results) => {
         if (err) {
             return res.status(500).send(err);
@@ -13,6 +18,7 @@ router.get('/', (req, res) => {
         res.json(results);
     });
 });
+
 
 // Crear un nuevo apiario
 router.post('/', (req, res) => {
@@ -30,4 +36,25 @@ router.post('/', (req, res) => {
     });
 });
 
+
+router.put('/:id', (req, res) => {
+    const { nombreApiario, IDArea } = req.body;
+    const { id } = req.params;
+  
+    if (!nombreApiario || !IDArea) {
+      return res.status(400).send('El nombre del apiario y el área son obligatorios');
+    }
+  
+    const query = 'UPDATE Apiarios SET NombreApiario = ?, IDArea = ? WHERE IDApiario = ?';
+    db.query(query, [nombreApiario, IDArea, id], (err, results) => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      if (results.affectedRows === 0) {
+        return res.status(404).send('Apiario no encontrado');
+      }
+      res.status(200).json({ message: 'Apiario actualizado con éxito' });
+    });
+  });
+  
 module.exports = router;

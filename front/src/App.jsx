@@ -4,12 +4,13 @@ import Header from './components/comun/header/Header';
 import Footer from './components/comun/footer/Footer';
 import InicioSesion from './components/login/Login';
 import VisualizacionDeTareas from './components/visualizacionDeTareas/visualizacionDeTareas';
-import Registros from './components/registros/Registros'; // Nuevo componente
+import Registros from './components/registros/Registros';
 import AgregarEmpleado from './components/agregarempleado/AgregarEmpleado';
 import GestionEmpleados from './components/gestionempleados/GestionEmpleados';
 import EditarEmpleado from './components/editarempleado/EditarEmpleado';
 import Dashboard from './components/estadisticas/Dashboard';
 import Register from './components/register/Register';
+import Apiarios from './components/apiarios/Apiarios'; 
 import './App.css';
 
 export default class App extends Component {
@@ -66,10 +67,14 @@ export default class App extends Component {
                             {isAuthenticated ? <Dashboard /> : <Redirect to="/iniciar-sesion" />}
                         </Route>
 
+                        <Route path="/apiarios">
+                        <Apiarios /> 
+                        </Route>
+
                         <Route path="/editar-empleado">
                             <EditarEmpleado />
                         </Route>
-                        
+
                         <Route path="/agregar-empleado">
                             <AgregarEmpleado />
                         </Route>
